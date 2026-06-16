@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="心理异常智能早筛与精准干预 - 基于多模态AI的心理咨询辅助系统">
+    <meta name="theme-color" content="#8B9D83">
+    <title>心理咨询AI助手 - 多模态版</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=2">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🧠</span>
+                <h1>心理咨询AI助手</h1>
+                <span class="badge">多模态</span>
+            </div>
+            <div class="session-info">
+                <button id="theme-toggle" class="theme-toggle" title="切换暗色/亮色模式">🌙</button>
+                <span id="session-status">会话: 未开始</span>
+                <button id="new-session-btn" class="btn-secondary">新会话</button>
+            </div>
+        </header>
+
+        <main class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="welcome-message">
+                    <div class="welcome-illustration">
+                        <div class="welcome-halo"></div>
+                        <div class="welcome-icon">💬</div>
+                    </div>
+                    <h2>欢迎使用心理咨询AI助手</h2>
+                    <p>我是一个专业的心理咨询AI，可以倾听你的烦恼，帮助你缓解压力。</p>
+                    <p>请放心，我们的对话是保密的。你可以随时开始分享你的感受。</p>
+                    <div class="feature-tags">
+                        <span class="tag">🎤 语音输入</span>
+                        <span class="tag">📷 情绪识别</span>
+                        <span class="tag">🔊 语音回复</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </main>
+
+        <footer class="input-container">
+            <div class="multimodal-buttons">
+                <button id="voice-btn" class="mm-btn" title="语音输入">
+                    <span class="icon">🎤</span>
+                    <span class="label">语音</span>
+                </button>
+                <button id="camera-btn" class="mm-btn" title="拍照识别情绪">
+                    <span class="icon">📷</span>
+                    <span class="label">情绪</span>
+                </button>
+                <button id="tts-toggle" class="mm-btn" title="语音回复开关">
+                    <span class="icon">🔊</span>
+                    <span class="label">语音</span>
+                </button>
+            </div>
+            
+            <div class="input-wrapper">
+                <textarea 
+                    id="message-input" 
+                    placeholder="输入你的消息，或点击上方按钮使用语音/情绪识别..." 
+                    rows="1"
+                    maxlength="2000"
+                ></textarea>
+                <button id="send-btn" class="btn-primary">
+                    <span class="send-icon">➤</span>
+                </button>
+            </div>
+            <div class="input-hint">
+                按 Enter 发送，Shift+Enter 换行 | 支持语音输入和情绪识别
+            </div>
+        </footer>
+
+        <div class="emotion-panel" id="emotion-panel">
+            <div class="emotion-header">
+                <span>情绪分析</span>
+                <button id="close-emotion-btn">×</button>
+            </div>
+            <div class="emotion-content" id="emotion-content">
+                <div class="emotion-item">
+                    <span class="label">主要情绪:</span>
+                    <span id="emotion-type" class="value">-</span>
+                </div>
+                <div class="emotion-item">
+                    <span class="label">情绪强度:</span>
+                    <div class="intensity-bar">
+                        <div id="intensity-fill" class="intensity-fill"></div>
+                    </div>
+                    <span id="intensity-value" class="value">0</span>
+                </div>
+                <div class="emotion-item">
+                    <span class="label">治疗阶段:</span>
+                    <span id="therapy-stage" class="value">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="recording-overlay" id="recording-overlay">
+            <div class="recording-content">
+                <div class="recording-animation">
+                    <div class="pulse"></div>
+                    <div class="pulse"></div>
+                    <div class="pulse"></div>
+                </div>
+                <div class="recording-icon">🎤</div>
+                <div class="recording-text" id="recording-text">正在录音...</div>
+                <div class="recording-timer" id="recording-timer">00:00</div>
+                <button id="stop-recording-btn" class="btn-stop">停止录音</button>
+            </div>
+        </div>
+
+        <video id="camera-preview" class="camera-preview" autoplay playsinline></video>
+        <canvas id="camera-canvas" style="display: none;"></canvas>
+        
+        <input type="file" id="image-input" accept="image/*" style="display: none;">
+        <input type="file" id="audio-input" accept="audio/*" style="display: none;">
+    </div>
+
+    <script src="/static/js/multimodal.js?v=2"></script>
+</body>
+</html>
